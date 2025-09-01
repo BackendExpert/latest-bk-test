@@ -1,8 +1,10 @@
-import rateLimit from "express-rate-limit";
-import { env } from "../config/env.js";
+const rateLimit = require("express-rate-limit");
+const { env } = require("../config/env");
 
-export default rateLimit({
+const limiter = rateLimit({
     windowMs: env.rateLimitWindow,
     max: env.rateLimitMax,
     message: "Too many requests from this IP, please try again later.",
 });
+
+module.exports = limiter;

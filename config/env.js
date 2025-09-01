@@ -1,7 +1,7 @@
-import dotenv from "dotenv";
+const dotenv = require("dotenv");
 dotenv.config();
 
-export const env = {
+const env = {
     port: process.env.PORT || 5000,
     mongoUri: process.env.MONGO_URI,
     jwtSecret: process.env.JWT_SECRET,
@@ -10,5 +10,7 @@ export const env = {
     rateLimitWindow: parseInt(process.env.RATE_LIMIT_WINDOW),
     rateLimitMax: parseInt(process.env.RATE_LIMIT_MAX),
     systemEmail: process.env.EMAIL_USER,
-    systemEmailPass: process.env.EMAIL_PASSWORD
+    systemEmailPass: process.env.EMAIL_PASSWORD,
 };
+
+module.exports = { env };

@@ -1,6 +1,8 @@
-import { v4 as uuidv4 } from "uuid";
+const { v4: uuidv4 } = require("uuid");
 
-export default function requestId(req, res, next) {
+function requestId(req, res, next) {
     req.id = uuidv4();
     next();
 }
+
+module.exports = requestId;

@@ -1,9 +1,10 @@
-import UserLog from "../models/UserLog.js";
+const UserLog = require("../models/UserLog");
 
-export const activityLogger = (action) => {
+const activityLogger = (action) => {
     return async (req, res, next) => {
         try {
             if (!req.user) return next(); // only log authenticated actions
+
             await UserLog.create({
                 userId: req.user._id,
                 action,
@@ -15,6 +16,9 @@ export const activityLogger = (action) => {
         } catch (err) {
             console.error("Activity logging failed:", err.message);
         }
+
         next();
     };
 };
+
+module.exports = { activityLogger };

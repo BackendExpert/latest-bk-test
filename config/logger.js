@@ -1,8 +1,15 @@
-import morgan from "morgan";
-import fs from "fs";
-import path from "path";
+const morgan = require("morgan");
+const fs = require("fs");
+const path = require("path");
 
-const logStream = fs.createWriteStream(path.join("logs", "access.log"), { flags: "a" });
+// Ensure logs folder exists
+const logsDir = path.join(__dirname, "..", "logs");
+if (!fs.existsSync(logsDir)) {
+    fs.mkdirSync(logsDir, { recursive: true });
+}
 
-export const logger = morgan("combined", { stream: logStream });
-export default logger;
+const logStream = fs.createWriteStream(path.join(logsDir, "access.log"), { flags: "a" });
+
+const logger = morgan("combined", { stream: logStream });
+
+module.exports = logger;
