@@ -20,7 +20,7 @@ app.use(requestId);
 // Routes
 app.use("/api/v1/auth", authRoutes);
 
-// Error handler
+
 app.use(errorHandler);
 
-module.exports = app; // << This line is required
+module.exports = app; 
